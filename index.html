@@ -6,10 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Web Components</title>
     <script src="tooltip.js"></script>
+    <style>
+      div {
+        border: 2px solid orange;
+        display: inline;
+        position: relative;
+      }
+    </style>
   </head>
   <body>
-    <template id="tooltip-template"> <span> (?) </span> </template>
-
     <p>
       <ak-tooltip text="Web Components is a set of standards">
         Web Components
@@ -17,6 +22,6 @@
       are awesome!
     </p>
 
-    <ak-tooltip> Here we go</ak-tooltip>
+    <ak-tooltip></ak-tooltip>
   </body>
 </html>

@@ -6,8 +6,38 @@ class Tooltip extends HTMLElement {
     this._tooltipText = "Some tooltip text";
     this.message = "Some tooltip text";
     this.attachShadow({ mode: "open" });
-    const template = document.getElementById("tooltip-template");
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot.innerHTML = ` 
+                <style>
+                    div {
+                        background-color: black;
+                        color: white;
+                        position: absolute;
+                        z-index: 10;
+                    }
+
+                    :host {
+                        position: relative;
+                    }
+
+                    span {
+                        border: 1px solid black;
+                        padding: 0.15rem 0.5rem;
+                        text-align: center;
+                        border-radius: 3px;
+                        background-color: #ffcc00;
+                        cursor: pointer;
+                    }
+
+                    span:hover {
+                        background-color: #ffeb3b;
+                    }
+                </style>
+                
+
+                <slot>Some Default</slot> 
+                <span> (?) </span> `;
+    // const template = document.getElementById("tooltip-template");
+    // this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   connectedCallback() {
@@ -17,13 +47,11 @@ class Tooltip extends HTMLElement {
 
     const tooltipIcon = this.shadowRoot.querySelector("span");
 
-
     // tooltipIcon.textContent = " (?)";
     tooltipIcon.addEventListener("mouseenter", this._showTooltip.bind(this));
     tooltipIcon.addEventListener("mouseleave", this._hideTooltip.bind(this));
     this.shadowRoot.appendChild(tooltipIcon);
     this.style.position = "relative";
-
   }
 
   _showTooltip() {
