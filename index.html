@@ -6,11 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Web Components</title>
     <script src="tooltip.js"></script>
+    <script src="confirm-link.js"></script>
     <style>
       div {
         border: 2px solid orange;
-        display: inline;
-        position: relative;
       }
     </style>
   </head>
@@ -22,6 +21,9 @@
       are awesome!
     </p>
 
+
     <ak-tooltip></ak-tooltip>
+    <div> This does not get the web component</div>
+    <a is="ak-confirm-link" href="https://www.google.com">Google</a>
   </body>
 </html>
