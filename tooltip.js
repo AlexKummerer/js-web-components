@@ -6,6 +6,8 @@ class Tooltip extends HTMLElement {
     this._tooltipText = "Some tooltip text";
     this.message = "Some tooltip text";
     this.attachShadow({ mode: "open" });
+    const template = document.getElementById("tooltip-template");
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   connectedCallback() {
@@ -13,10 +15,10 @@ class Tooltip extends HTMLElement {
       this._tooltipText = this.getAttribute("text");
     }
 
-    const tooltipIcon = document.createElement("span");
+    const tooltipIcon = this.shadowRoot.querySelector("span");
 
 
-    tooltipIcon.textContent = " (?)";
+    // tooltipIcon.textContent = " (?)";
     tooltipIcon.addEventListener("mouseenter", this._showTooltip.bind(this));
     tooltipIcon.addEventListener("mouseleave", this._hideTooltip.bind(this));
     this.shadowRoot.appendChild(tooltipIcon);
